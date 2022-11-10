@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>NavBar</title>
+    <style>
+      *::after,
+      *::before {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      input:focus,
+      input:active {
+        border: 2px solid #339af0;
+        outline: none;
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        transition: all 250ms ease-out;
+      }
+      .logo:hover {
+        color: #339af0;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+        overflow: hidden;
+      }
+      .tools input[type="text"] {
+        padding: 6px 12px;
+        border: 2px solid #339af0;
+        border-radius: 5px;
+      }
+      a:visited,
+      a:link {
+        color: #212529;
+      }
+      body {
+        background-color: #f1f3f5;
+      }
+      .my-header {
+        background-color: #fff;
+        padding: 14px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 350ms ease;
+        font-family: "Ubuntu", sans-serif;
+      }
+      .my-header ul {
+        display: flex;
+        column-gap: 22px;
+      }
+      .my-header ul li a {
+        transition: all 250ms ease-in-out;
+        font-size: 22px;
+        font-weight: 500;
+      }
+      .my-header ul li a:hover {
+        color: #339af0;
+      }
+      .hamburger {
+        position: absolute;
+        display: none;
+        padding: 0px 6px;
+        cursor: pointer;
+      }
+      .hamburger span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: black;
+        margin: 2px 0;
+        transition: all 650ms ease;
+        border-radius: 5px;
+      }
+      .hamburger:hover span:nth-child(odd) {
+        transform: translateX(3px);
+      }
+      .hamburger:hover span:nth-child(even) {
+        transform: translateX(-3px);
+      }
+      .my-header .tools {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        position: relative;
+        overflow: visible;
+        background-color: #fff;
+      }
+      .my-header .tools input {
+        width: 250px;
+        padding: 8px;
+        position: absolute;
+        right: 30px;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: all 250ms ease-in-out;
+      }
+      .my-header .tools input.active {
+        transform: scaleX(1);
+      }
+      .my-header svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2.4;
+      }
+
+      @media (max-width: 920px) {
+        .hamburger {
+          display: block;
+        }
+
+        .logo {
+          margin-left: 68px;
+        }
+
+        .my-header {
+          width: 100%;
+          position: fixed;
+          top: 0px;
+        }
+
+        .my-header.active {
+          top: 150px;
+        }
+
+        .my-nav {
+          height: 150px;
+          top: -150px;
+          left: 0;
+          position: fixed;
+          transition: all 350ms ease;
+          width: 100%;
+          padding: 22px 32px;
+        }
+
+        .my-nav ul {
+          flex-direction: column;
+          height: 100px;
+          flex-wrap: wrap;
+          row-gap: 12px;
+        }
+
+        .my-nav.active {
+          position: fixed;
+          top: 0;
+          background-color: #fff;
+        }
+
+        .hamburger.active span:nth-child(1) {
+          transform: translateX(5px);
+          transform-origin: left;
+          background-color: #339af0;
+        }
+.hamburger.active span:nth-child(2) {
+          transform: translateX(-5px);
+          transform-origin: left;
+          background-color: #339af0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+          transform: translateX(5px);
+          transform-origin: right;
+          background-color: #339af0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="my-header">
+      <a class="logo" href="#">Logo</a>
+      <nav class="my-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">About</a></li>
+          <!-- add more here  -->
+        </ul>
+      </nav>
+      <div class="tools">
+        <input type="text" placeholder="search something...." />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="search-btn"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+<script>
+      document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector(".hamburger").classList.toggle("active");
+        document.querySelector("header").classList.toggle("active");
+        document.querySelector("nav").classList.toggle("active");
+      });
+      document.querySelector(".search-btn").addEventListener("click", () => {
+        document.querySelector(".tools input").classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
